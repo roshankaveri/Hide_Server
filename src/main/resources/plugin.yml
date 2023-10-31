@@ -1,0 +1,7 @@
+name: Hide_Server
+version: '${project.version}'
+main: org.hmmbo.hide_server.Hide_Server
+api-version: '1.20'
+load: STARTUP
+commands:
+  hs:

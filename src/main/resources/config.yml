@@ -1,0 +1,15 @@
+Prefix: HideServer
+
+setwait:
+  x: 0
+  y: -2
+  z: 0
+  yaw: 0
+  pitch: 0
+
+setspawn:
+  x: 100
+  y: 100
+  z: 100
+  yaw: 0
+  pitch: 0
