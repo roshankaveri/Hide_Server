@@ -55,7 +55,7 @@ public final class Hide_Server extends JavaPlugin implements Listener {
             e.setCancelled(true);
         }
     }
-//
+
     @EventHandler
     public static void Res_Pack(PlayerResourcePackStatusEvent e) {
         if(e.getStatus().equals(PlayerResourcePackStatusEvent.Status.SUCCESSFULLY_LOADED)){
