@@ -16,16 +16,18 @@ public class Commands implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         Player player = (Player) sender;
         if(args.length == 0){
-            player.sendMessage(main.getConfig().getString("prefix") + "Please Use /hs Help To Know About Plugin");
+            player.sendMessage(main.getConfig().getString("Prefix") + " Please Use /hs Help To Know About Plugin");
         }
         if (args.length == 1) {
             if (args[0].equalsIgnoreCase("setspawn")) {
                 setLocation("setspawn", player.getLocation().getX(),  player.getLocation().getY(),  player.getLocation().getZ(),  player.getLocation().getYaw(),
                         player.getLocation().getPitch());
+                player.sendMessage(main.getConfig().getString("Prefix") +" New Spawn Set Sucessfully");
             }
             if (args[0].equalsIgnoreCase("setwait")) {
                 setLocation("setwait", player.getLocation().getX(),  player.getLocation().getY(),  player.getLocation().getZ(),  player.getLocation().getYaw(),
                         player.getLocation().getPitch());
+                player.sendMessage(main.getConfig().getString("Prefix") +" New Wait Area Set Sucessfully");
             }
         }
 

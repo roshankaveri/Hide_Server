@@ -1,15 +1,17 @@
-Prefix: HideServer
+Prefix: RpHub
+kickmsg: "YOU NEED RESOURCE PACK TO JOIN"
+kickondeny: false
 
 setwait:
   x: 0
-  y: -2
+  y: 300
   z: 0
   yaw: 0
   pitch: 0
 
 setspawn:
   x: 100
-  y: 100
+  y: 300
   z: 100
   yaw: 0
   pitch: 0

@@ -2,6 +2,7 @@ package org.hmmbo.hide_server;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -31,9 +32,16 @@ public final class Hide_Server extends JavaPlugin implements Listener {
             saveResource("config.yml", false);
         }
         Bukkit.getPluginManager().registerEvents(this,this);
-        System.out.println("LOADED PLUGIN");
-        Objects.requireNonNull(getCommand("hs")).setExecutor(new Commands(this, this));
-        Objects.requireNonNull(getCommand("hs")).setTabCompleter(new Commandtab());
+        main.getLogger().info(
+                "ooooooooo  oooooooooo       ooooo ooooo ooooo  oooo oooooooooo"+"\n"+
+                        "888    888  888    888       888   888   888    88   888    888"+"\n"+
+                        "888oooo88   888oooo88        888ooo888   888    88   888oooo88"+"\n"+
+                      "888  88o    888              888   888   888    88   888    888"+"\n"+
+                      "o888o  88o8 o888o            o888o o888o   888oo88   o888ooo888"+"\n"+
+                      "                      A PLUGIN MADE BY HMMBO                     ");
+
+        Objects.requireNonNull(getCommand("rphub")).setExecutor(new Commands(this, this));
+        Objects.requireNonNull(getCommand("rphub")).setTabCompleter(new Commandtab());
     }
 
     @EventHandler
@@ -50,7 +58,8 @@ public final class Hide_Server extends JavaPlugin implements Listener {
     }
     }
     @EventHandler
-    public static void Move(EntityDamageByEntityEvent e) {
+    public static void Moves(EntityDamageByEntityEvent e) {
+        if(e.getEntityType().equals(EntityType.PLAYER))
         if(waiting.contains((Player) e.getEntity())){
             e.setCancelled(true);
         }
@@ -60,9 +69,13 @@ public final class Hide_Server extends JavaPlugin implements Listener {
     public static void Res_Pack(PlayerResourcePackStatusEvent e) {
         if(e.getStatus().equals(PlayerResourcePackStatusEvent.Status.SUCCESSFULLY_LOADED)){
             waiting.remove(e.getPlayer());
-            System.out.println("MOVED THIS KID");
             e.getPlayer().teleport(new Location(e.getPlayer().getWorld(), main.getConfig().getDouble("setspawn.x") ,main.getConfig().getDouble("setspawn.y"), main.getConfig().getDouble("setspawn.z"),
                     main.getConfig().getInt("setspawn.yaw"), main.getConfig().getInt("setspawn.pitch")));
+        }
+        if(e.getStatus().equals(PlayerResourcePackStatusEvent.Status.DECLINED)){
+            if(main.getConfig().getBoolean("kickondeny")){
+                e.getPlayer().kickPlayer(main.getConfig().getString("kickmsg"));
+            }
         }
 
     }
